@@ -57,7 +57,7 @@ dropout = 0.5
 # In[ ]:
 
 
-X_train[0].shape
+#X_train[0].shape
 
 
 # In[ ]:
