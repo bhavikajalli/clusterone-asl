@@ -4,15 +4,12 @@
 # In[ ]:
 
 
-from tqdm import tqdm
 import numpy as np
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
-from PIL import Image
 import os
 import tensorflow as tf
 from clusterone import get_data_path, get_logs_path
-from skimage.transform import resize
 
 
 # In[ ]:
@@ -57,7 +54,7 @@ dropout = 0.5
 # In[ ]:
 
 
-#X_train[0].shape
+X_train[0].shape
 
 
 # In[ ]:
