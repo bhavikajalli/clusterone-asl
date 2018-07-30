@@ -318,6 +318,6 @@ checkpoint_dir=FLAGS.logs_dir
                 if i % 500 == 0:
                     test_accuracy  = sess.run(accuracy, feed_dict={x: X_test, y: y_testHot})
                     print("Batch %s - test accuracy: %s" % (i,test_accuracy))
-                                                                   
+                                                                  
         sess.run(train_step, feed_dict={x: batch_x, y: batch_y})
 
