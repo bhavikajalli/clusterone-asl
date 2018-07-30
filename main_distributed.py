@@ -16,7 +16,7 @@ from clusterone import get_data_path, get_logs_path
 
 
 train_dir = get_data_path(
-            dataset_name = 'data/bhavikaj/bhavikaj-asl',  # on ClusterOne
+            dataset_name = 'data/bhavikaj/bhavikaj-asl/data.h5',  # on ClusterOne
             local_root = 'data.h5',  # path to local dataset
             local_repo = '',  # local data folder name
             path = ''  # folder within the data folder
@@ -136,7 +136,7 @@ LOCAL_LOG_LOCATION = "~/Documents/Github/clusterone-asl/logs/"
 LOCAL_DATASET_LOCATION = "~/Documents/Github/clusterone-asl/data.h5"
 
 # Name of the data folder. In the example above, "comma"
-LOCAL_DATASET_NAME = "data.h5
+LOCAL_DATASET_NAME = "data.h5"
 
 train_data_dir = "~/Documents/Github/clusterone-asl/data.h5"
 
