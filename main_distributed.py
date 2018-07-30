@@ -16,7 +16,7 @@ from clusterone import get_data_path, get_logs_path
 
 
 train_dir = get_data_path(
-            dataset_name = 'data/bhavikaj/bhavikaj-asl/data.h5',  # on ClusterOne
+            dataset_name = '/data/bhavikaj/bhavikaj-asl/data.h5',  # on ClusterOne
             local_root = 'data.h5',  # path to local dataset
             local_repo = '',  # local data folder name
             path = ''  # folder within the data folder
@@ -64,7 +64,7 @@ X_train[0].shape
 def conv_net(x, n_classes, dropout,is_training):
     # Define a scope for reusing the variables
     
-    #The ASL data input is a 3-D vector of 200x200 features
+    #The ASL data input is a 3-D vector of 50x50 features
     # Reshape to match picture format [Height x Width x Channel]
     # Tensor input become 4-D: [Batch Size, Height, Width, Channel]
     x = tf.reshape(x, shape=[-1, n_input, n_input, 3])
@@ -302,39 +302,12 @@ with tf.device(device):
    
 
 
-# In[ ]:
-
-
-# def run_train_epoch(target,FLAGS,epoch_index):
-#     """Restores the last checkpoint and runs a training epoch
-#     Inputs:
-#         - target: device setter for distributed work
-#         - FLAGS:
-#             - requires FLAGS.logs_dir from which the model will be restored.
-#             Note that whatever most recent checkpoint from that directory will be used.
-#             - requires FLAGS.steps_per_epoch
-#         - epoch_index: index of current epoch
-#     """
-
-#     hooks=[tf.train.StopAtStepHook(last_step=FLAGS.steps_per_epoch*epoch_index)] # Increment number of required training steps
-#     i = 1
-
 with tf.train.MonitoredTrainingSession(master=target,
 is_chief=(FLAGS.task_index == 0),
 checkpoint_dir=FLAGS.logs_dir
 #    ,hooks = hooks
 ) as sess:
-    
 
-#         while not sess.should_stop():
-#             variables = [loss_op, learning_rate, train_step]
-#             current_loss, lr, _ = sess.run(variables)
-
-#             print("Iteration %s - Batch loss: %s" % ((epoch_index)*FLAGS.steps_per_epoch + i,current_loss))
-#             i+=1
-
-# for e in range(FLAGS.nb_epochs):
-#     run_train_epoch(target, FLAGS, e)
     for i in range(2000):
         batch_x, batch_y = next_batch(batch_size,X_train,y_trainHot)
         [train_accuracy, l] = sess.run([accuracy, loss_op], feed_dict={x: batch_x, y: batch_y})
@@ -342,7 +315,9 @@ checkpoint_dir=FLAGS.logs_dir
             if i % 5 == 0:
                 print("Batch %s - training accuracy: %s - training loss: %s" % (i,train_accuracy,l))
                   #writer.add_summary(s, i)
-#                 if i % 500 == 0:
-#                     sess.run(assignment, feed_dict={x: mnist.test.images[:1024], y: mnist.test.labels[:1024]})
+                if i % 500 == 0:
+                    test_accuracy  = sess.run(accuracy, feed_dict={x: X_test, y: y_testHot})
+                    print("Batch %s - test accuracy: %s" % (i,test_accuracy))
+                                                                   
         sess.run(train_step, feed_dict={x: batch_x, y: batch_y})
 
