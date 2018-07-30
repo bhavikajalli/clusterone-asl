@@ -2,3 +2,4 @@ numpy
 scikit-learn
 tensorflow
 h5py
+scipy
