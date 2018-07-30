@@ -340,7 +340,7 @@ checkpoint_dir=FLAGS.logs_dir
         [train_accuracy, l] = sess.run([accuracy, loss_op], feed_dict={x: batch_x, y: batch_y})
         if FLAGS.task_index == 0:
             if i % 5 == 0:
-                print("Batch %s - training accuracy: %s" % (i,train_accuracy))
+                print("Batch %s - training accuracy: %s - training loss: %s" % (i,train_accuracy,l))
                   #writer.add_summary(s, i)
 #                 if i % 500 == 0:
 #                     sess.run(assignment, feed_dict={x: mnist.test.images[:1024], y: mnist.test.labels[:1024]})
