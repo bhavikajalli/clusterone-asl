@@ -28,7 +28,7 @@ train_dir = get_data_path(
 
 import h5py
 # Load hdf5 dataset
-h5f = h5py.File('data/bhavikaj/bhavikaj-asl/data.h5', 'r')
+h5f = h5py.File('/data/bhavikaj/bhavikaj-asl/data.h5', 'r')
 X_train = h5f['X_train']
 y_trainHot = h5f['y_trainHot']
 X_test = h5f['X_test']
